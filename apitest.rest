@@ -1,0 +1,49 @@
+###Get all products
+GET http://localhost:4010/products
+
+###Get each products by id
+GET http://localhost:4010/products/2
+
+###Get price low to high
+GET http://localhost:4010/products
+
+###Get price high to low
+GET http://localhost:4010/products
+
+###Get products by lifestyle
+GET http://localhost:4010/products/2
+
+###Get products instock (0 or 1)
+GET http://localhost:4010/products/1
+
+
+
+###Add new product
+POST http://localhost:4010/products
+Content-Type: application/json
+
+{
+    "c_image" : "Test1",
+    "c_title" : "Test1",
+    "c_description" : "Test1",
+    "c_price" : "Test1",
+    "c_instock" : 1,
+    "c_category_id" : 1
+}
+
+
+###Update all products
+PUT http://localhost:4010/products/9
+Content-Type: application/json
+
+{   
+    "c_image" : "update4",
+    "c_title" : "update2",
+    "c_description" : "update2",
+    "c_price" : "123",
+    "c_instock" : 1,
+    "c_category_id" : 3
+}
+
+###Delete all products
+DELETE http://localhost:4010/products/14
