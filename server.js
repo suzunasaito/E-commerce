@@ -2,19 +2,20 @@
 import express, { response } from "express";
 import mysql2 from "mysql2";
 import cors from "cors";
+import 'dotenv/config';
 
 // Create server variable using express
 
 const server = express();
 server.use(express.json());
 server.use(cors());
-const port =4010;
+const port =process.env.serverport;
 const db = mysql2.createPool({
-    host: "localhost",
-    port: "8889",
-    user: "root",
-    password: "root",
-    database: "Ecommerce",
+    host: process.env.dbhost,
+    port: process.env.dbport,
+    user: process.env.dbuser,
+    password: process.env.dbpassword,
+    database: process.env.dbname,
     connectionLimit: 10
 });
 
