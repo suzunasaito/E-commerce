@@ -9,7 +9,7 @@ import 'dotenv/config';
 const server = express();
 server.use(express.json());
 server.use(cors());
-const port = 4010;
+const port = process.env.serverport;
 const db = mysql2.createPool({
     host: process.env.dbhost,
     port: process.env.dbport,
