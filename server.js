@@ -23,17 +23,17 @@ server.listen(port, function(){
     console.log("Server");
 })
 
-server.get('/products', (req, res)=>{
-    let sqlQuery = "CALL  `GetAllProducts`()";
-    db.query(sqlQuery, (error, data) =>{
-        if(error){
-            res.json(error);
-        }
-        if(data){
-            res.json(data[0])
-        }
-    })
-})
+// server.get('/products', (req, res)=>{
+//     let sqlQuery = "CALL  `GetAllProducts`()";
+//     db.query(sqlQuery, (error, data) =>{
+//         if(error){
+//             res.json(error);
+//         }
+//         if(data){
+//             res.json(data[0])
+//         }
+//     })
+// })
 
 
 
@@ -50,23 +50,10 @@ server.get("/products", function(req, res){
     })
 });
 
-// Get each product by id
-server.get("/products/:id", function(req, res){
-    var sqlQuery = "CALL `GetEachProductsByid`(?)";
-    var id = req.params.id;
 
-    db.query(sqlQuery,[id], function(error, data){
-        if(error){
-            res.json(error);
-        }
-        if(data){
-            res.json(data[0]);
-        }
-    })
-});
 
 // Get product filter by price low to high
-server.get("/products", function (req,res){
+server.get("/products/sort/lowtohigh", function (req,res){
     var sqlQuery = "CALL `PriceLowtoHigh`()";
 
     db.query(sqlQuery, function(error, data){
@@ -80,7 +67,7 @@ server.get("/products", function (req,res){
 });
 
 // Get product filter by price high to low
-server.get("/products", function (req,res){
+server.get("/products/sort/hightolow", function (req,res){
     var sqlQuery = "CALL `PriceHightoLow`()";
 
     db.query(sqlQuery, function(error, data){
@@ -94,25 +81,25 @@ server.get("/products", function (req,res){
 });
 
 // Get product filter by lifestyle
-server.get("/products:categoryid", function(req, res){
-    var sqlQuery = " CALL `GetProductsByLifestyle`(?)";
-    var categoryid = req.params.categoryid;
+// server.get("/products-bylifestyle/:categoryid", function(req, res){
+//     var sqlQuery = " CALL `GetProductsByLifestyle`(?)";
+//     var categoryid = req.params.categoryid;
 
-    db.query(sqlQuery,[categoryid], function(error, data){
-        if(error){
-            res.json(error);
-        }
-        if(data){
-            res.json(data[0]);
-        }
-    })
-    })
+//     db.query(sqlQuery,[categoryid], function(error, data){
+//         if(error){
+//             res.json(error);
+//         }
+//         if(data){
+//             res.json(data[0]);
+//         }
+//     })
+//     });
 
 
 // Get product live or offline
-server.get("/products:instockid", function(req, res){
+server.get("/products-online", function(req, res){
     var sqlQuery = " CALL `GetStockInfo`(?)";
-    var instockid = req.params.instockid;
+    var instockid = 1;
 
     db.query(sqlQuery,[instockid], function(error, data){
         if(error){
@@ -179,3 +166,19 @@ server.delete('/products/:id', function(req, res){
         }
     })
 })
+
+
+// Get each product by id
+server.get("/products/:id", function(req, res){
+    var sqlQuery = "CALL `GetEachProductsByid`(?)";
+    var id = req.params.id;
+
+    db.query(sqlQuery,[id], function(error, data){
+        if(error){
+            res.json(error);
+        }
+        if(data){
+            res.json(data[0]);
+        }
+    })
+});

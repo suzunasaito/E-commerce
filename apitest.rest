@@ -1,6 +1,9 @@
 ###Get all products
 GET http://localhost:4010/products
 
+###
+GET http://localhost:4010/products-online
+
 ###Get each products by id
 GET http://localhost:4010/products/2
 
